@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "organicshop-2aa75"
+  },
+  "targets": {
+    "organicshop-2aa75": {
+      "hosting": {
+        "organicshop": [
+          "organicshop-2aa75"
+        ]
+      }
+    }
+  }
+}
