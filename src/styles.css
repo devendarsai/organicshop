@@ -1,3 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+/* blue background  and red text*/
+.br {
+  background-color: blue;
+  color: red;
+}
+
+/* green background and white text*/
+.gw {
+  background-color: green;
+  color: white;
+}
+
+/* yellow background and black text*/
+.yb {
+  background-color: yellow;
+  color: black;
+}
+
+/* orange background and black text*/
+.ob {
+  background-color: orange;
+  color: black;
+}
+
+/* purple background and white text*/
+.pw {
+  background-color: purple;
+  color: white;
+}
+
+/* pink background and black text*/
+.pk {
+  background-color: pink;
+  color: black;
+}
+
+/* grey background and black text*/
+.gb {
+  background-color: grey;
+  color: black;
+}
+
+/* brown background and white text*/
+.bw {
+  background-color: brown;
+  color: white;
+}
+
+/* black background and white text*/
+.bk {
+  background-color: black;
+  color: white;
+}
+
+/* justify content center */
+.jc {
+  justify-content: center;
+}
+body {
+  padding-top: 120px;
+}
