@@ -8,11 +8,25 @@ import { getAuth, signOut } from 'firebase/auth';
 })
 export class BsNavbarComponent {
   private auth;
+  user: any = null;
   constructor() {
     this.auth = getAuth();
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        console.log('user is signed in');
+        this.user = user;
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        console.log('user is signed out');
+        this.user = null;
+      }
+    });
   }
   logout() {
-    this.auth = getAuth();
     signOut(this.auth)
       .then(() => {
         // Sign-out successful.
