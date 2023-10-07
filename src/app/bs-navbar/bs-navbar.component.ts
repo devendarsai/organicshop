@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { getAuth, signOut } from 'firebase/auth';
+import { User, getAuth, signOut } from 'firebase/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bs-navbar',
@@ -8,22 +9,19 @@ import { getAuth, signOut } from 'firebase/auth';
 })
 export class BsNavbarComponent {
   private auth;
-  user: any = null;
+  user$: Observable<User | null>;
   constructor() {
     this.auth = getAuth();
-    this.auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        console.log('user is signed in');
-        this.user = user;
-        // ...
-      } else {
-        // User is signed out
-        // ...
-        console.log('user is signed out');
-        this.user = null;
-      }
+    this.user$ = new Observable((observer) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          console.log('user is signed in');
+          observer.next(user);
+        } else {
+          console.log('user is signed out');
+          observer.next(null);
+        }
+      });
     });
   }
   logout() {

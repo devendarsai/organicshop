@@ -16,12 +16,12 @@ export class LoginComponent {
 
   login() {
     this.auth = getAuth();
-    console.log('login');
+    console.log('Google login');
     const provider = new GoogleAuthProvider();
     signInWithRedirect(this.auth, provider);
   }
   fblogin() {
-    console.log('login');
+    console.log('Facebook login');
     const provider = new FacebookAuthProvider();
     signInWithRedirect(this.auth, provider);
     console.log('login done');
