@@ -29,6 +29,10 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+import { UserService } from './user.service';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     provideDatabase(() => getDatabase()),
     NgbModule,
   ],
-  providers: [ScreenTrackingService, UserTrackingService],
+  providers: [
+    ScreenTrackingService,
+    UserTrackingService,
+    AuthService,
+    AuthGuard,
+    UserService,
+    AdminAuthGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

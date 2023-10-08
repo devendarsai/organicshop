@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { User, getAuth, signOut } from 'firebase/auth';
-import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
+import { AppUser } from '../models/app-user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-navbar',
@@ -8,31 +9,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./bs-navbar.component.css'],
 })
 export class BsNavbarComponent {
-  private auth;
-  user$: Observable<User | null>;
-  constructor() {
-    this.auth = getAuth();
-    this.user$ = new Observable((observer) => {
-      this.auth.onAuthStateChanged((user) => {
-        if (user) {
-          console.log('user is signed in');
-          observer.next(user);
-        } else {
-          console.log('user is signed out');
-          observer.next(null);
-        }
-      });
-    });
+  appUser!: AppUser | null;
+  constructor(private auth: AuthService, private router: Router) {
+    auth.appUser$.subscribe((appUser) => (this.appUser = appUser));
+    console.log('appUser', this.appUser);
   }
+
   logout() {
-    signOut(this.auth)
-      .then(() => {
-        // Sign-out successful.
-        console.log('logout successful');
-      })
-      .catch((error) => {
-        // An error happened.
-        console.log('logout error', error);
-      });
+    this.auth.logout();
+    this.router.navigate(['/']);
   }
 }
